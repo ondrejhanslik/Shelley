@@ -1,14 +1,14 @@
 //
-//  SYPredicateFilter.m
+//  SYSelectorFilter.m
 //  Shelley
 //
 //  Created by Pete Hodgson on 7/20/11.
 //  Copyright 2011 ThoughtWorks. All rights reserved.
 //
 
-#import "SYPredicateFilter.h"
+#import "SYSelectorFilter.h"
 
-@implementation SYPredicateFilter
+@implementation SYSelectorFilter
 @synthesize selector=_selector,args=_args;
 
 - (id)initWithSelector:(SEL)selector args:(NSArray *)args {

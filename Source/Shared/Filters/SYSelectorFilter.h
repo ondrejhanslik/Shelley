@@ -1,5 +1,5 @@
 //
-//  SYPredicateFilter.h
+//  SYSelectorFilter.h
 //  Shelley
 //
 //  Created by Pete Hodgson on 7/20/11.
@@ -8,7 +8,7 @@
 
 #import "SYArrayFilterTemplate.h"
 
-@interface SYPredicateFilter : SYArrayFilterTemplate {
+@interface SYSelectorFilter : SYArrayFilterTemplate {
     SEL _selector;
     NSArray *_args;
     

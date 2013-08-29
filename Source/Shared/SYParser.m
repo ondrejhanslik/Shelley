@@ -8,7 +8,7 @@
 
 #import "SYParser.h"
 #import "SYParents.h"
-#import "SYPredicateFilter.h"
+#import "SYSelectorFilter.h"
 #import "SYClassFilter.h"
 #import "SYNthElementFilter.h"
 
@@ -278,7 +278,7 @@
         selectorDesc = [[[parsedSection params] componentsJoinedByString:@":"] stringByAppendingString:@":"];
     }
     
-    return [[[SYPredicateFilter alloc] initWithSelector:NSSelectorFromString(selectorDesc) 
+    return [[[SYSelectorFilter alloc] initWithSelector:NSSelectorFromString(selectorDesc) 
                                                    args:[parsedSection args]] autorelease];
 }
 
