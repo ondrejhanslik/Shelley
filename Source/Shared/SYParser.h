@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SYFilter.h"
 
-
 @interface SYParser : NSObject {
     NSScanner *_scanner;
 

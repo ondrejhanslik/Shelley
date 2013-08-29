@@ -11,6 +11,7 @@
 #import "SYSelectorFilter.h"
 #import "SYClassFilter.h"
 #import "SYNthElementFilter.h"
+#import "SYPredicateFilter.h"
 
 @interface SYSectionParser : NSObject {
     NSScanner *_scanner;
@@ -29,8 +30,9 @@
 @implementation SYSectionParser
 @synthesize params=_params,args=_args;
 
-- (id)initWithScanner: (NSScanner *)scanner{
+- (id)initWithScanner: (NSScanner *)scanner {
     self = [super init];
+    
     if (self) {
         _scanner = [scanner retain];
         
@@ -39,6 +41,7 @@
         _params = [[NSMutableArray alloc] init];
         _args = [[NSMutableArray alloc] init];
     }
+    
     return self;
 }
 - (void)dealloc {
@@ -51,43 +54,47 @@
     [super dealloc];
 }
 
-- (BOOL) hasNoArgs {
+- (BOOL)hasNoArgs {
     return [_args count] == 0;
 }
 
-- (BOOL) parseParamWithoutColon{
+- (BOOL)parseParamWithoutColon {
     NSString *paramString;
-    if( [_scanner scanCharactersFromSet:_paramChars intoString:&paramString] ){
+    if ( [_scanner scanCharactersFromSet:_paramChars intoString:&paramString] ) {
         [_params addObject:paramString];
         return YES;
-    }else{
+    } else{
         return NO;
     }
 }
 
-- (BOOL) parseColon{
+- (BOOL)parseColon {
 	return [_scanner scanString:@":" intoString:NULL];
 }
 
-- (BOOL) parseParamWithColon{
-    if( ![self parseParamWithoutColon] )
+- (BOOL)parseParamWithColon{
+    if ( ![self parseParamWithoutColon] ) {
         return NO;
-    if( ![self parseColon] )
+    }
+    else if ( ![self parseColon] ) {
         [NSException raise:@"Parse Error" format:@"expected a :"];
+    }
+    
     return YES;
 }
 
-- (BOOL) parseSingleQuote{
+- (BOOL)parseSingleQuote {
     return [_scanner scanString:@"'" intoString:NULL];
 }
 
-- (BOOL) parseDoubleQuote{
+- (BOOL)parseDoubleQuote {
     return [_scanner scanString:@"\"" intoString:NULL];
 }
 
 - (NSString *)parseSingleQuotedString{
-    if( ![self parseSingleQuote] )
+    if ( ![self parseSingleQuote] ) {
         return nil;
+    }
     
     NSString *string;
     [_scanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"'"] intoString:&string];
@@ -95,9 +102,10 @@
     return string;
 }
 
-- (NSString *)parseDoubleQuotedString{
-    if( ![self parseDoubleQuote] )
+- (NSString *)parseDoubleQuotedString {
+    if ( ![self parseDoubleQuote] ) {
         return nil;
+    }
     
     NSString *string;
     [_scanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\""] intoString:&string];
@@ -106,48 +114,54 @@
 }
 
 
-- (NSString *)parseQuotedString{
+- (NSString *)parseQuotedString {
     NSString *string = [self parseSingleQuotedString];
-    if( !string )
+    if ( !string ) {
         string = [self parseDoubleQuotedString];
+    }
     
     return string;
 }
 
-- (NSNumber *) parseNumber{
+- (NSNumber *)parseNumber {
     NSString *numberString;
-    if( ![_scanner scanCharactersFromSet:_numberChars intoString:&numberString] )
+    if ( ![_scanner scanCharactersFromSet:_numberChars intoString:&numberString] ) {
         return nil;
+    }
     
-    NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
-    return [f numberFromString:numberString];
+    NSNumberFormatter *numerFormatter = [[[NSNumberFormatter alloc] init] autorelease];
+    return [numerFormatter numberFromString:numberString];
 }
 
-- (id) parseArg{
+- (id)parseArg {
     NSString *parsedString = [self parseQuotedString];
-    if( parsedString )
+    if ( parsedString ) {
         return parsedString;
+    }
     
     return [self parseNumber];
 }
 
-- (void) parseArgAndCollect{
+- (void)parseArgAndCollect {
     id arg = [self parseArg];
-    if( arg )
+    if ( arg ) {
         [_args addObject:arg];
+    }
 }
 
-- (void) parse{
+- (void)parse {
     [self parseParamWithoutColon];
-    if( ![self parseColon] ){
+    if ( ![self parseColon] ) {
         return; 
     }
     
-    
     [self parseArgAndCollect];
-    while( YES ){
-        if( ![self parseParamWithColon] )
+    
+    while( YES ) {
+        if ( ![self parseParamWithColon] ) {
             break;
+        }
+        
         [self parseArgAndCollect];
     }
 }
@@ -183,111 +197,136 @@
     [super dealloc];
 }
 
-- (id<SYFilter>) interpretSectionAsClassFilterShorthand:(SYSectionParser *)parsedSection{
-    if( ![parsedSection hasNoArgs] ){
+- (id<SYFilter>)interpretSectionAsClassFilterShorthand:(SYSectionParser *)parsedSection {
+    if ( ![parsedSection hasNoArgs] ) {
         return nil;
     }
     
     NSString *firstParam = nil;
     
-    if ([[parsedSection params] count] > 0)
-    {
+    if ([[parsedSection params] count] > 0) {
         firstParam = [[parsedSection params] objectAtIndex:0];
     }
-    else
-    {
-        [NSException raise:@"missing paramater"
-					format:@"no paramater found at position %lu in string \"%@\"", (unsigned long) [_scanner scanLocation], [_scanner string] ];
+    else {
+        [NSException raise:@"Missing paramater"
+					format:@"No paramater found at position %lu in string \"%@\"", (unsigned long) [_scanner scanLocation], [_scanner string] ];
     }
  
  
     Class shorthandClass = nil;
     
 #if TARGET_OS_IPHONE
-    if( [firstParam isEqualToString:@"view"] )
+    if ( [firstParam isEqualToString:@"view"] ) {
         shorthandClass = [UIView class];
-    else if( [firstParam isEqualToString:@"button"] )
+    }
+    else if ( [firstParam isEqualToString:@"button"] ) {
         shorthandClass = [UIButton class];
-    else if( [firstParam isEqualToString:@"label"] )
+    }
+    else if ( [firstParam isEqualToString:@"label"] ) {
         shorthandClass = [UILabel class];
-    else if( [firstParam isEqualToString:@"alertView"] )
+    }
+    else if ( [firstParam isEqualToString:@"alertView"] ) {
         shorthandClass = [UIAlertView class];
-    else if( [firstParam isEqualToString:@"actionSheet"] )
-      shorthandClass = [UIActionSheet class];
-    else if( [firstParam isEqualToString:@"navigationButton"] )
+    }
+    else if ( [firstParam isEqualToString:@"actionSheet"] ) {
+        shorthandClass = [UIActionSheet class];
+    }
+    else if ( [firstParam isEqualToString:@"navigationButton"] ) {
         shorthandClass = NSClassFromString(@"UINavigationButton");
-    else if( [firstParam isEqualToString:@"navigationItemView"] )
+    }
+    else if ( [firstParam isEqualToString:@"navigationItemView"] ) {
         shorthandClass = NSClassFromString(@"UINavigationItemView");
-    else if( [firstParam isEqualToString:@"navigationItemButtonView"] )
-      shorthandClass = NSClassFromString(@"UINavigationItemButtonView");
-    else if( [firstParam isEqualToString:@"textField"] )
+    }
+    else if ( [firstParam isEqualToString:@"navigationItemButtonView"] ) {
+        shorthandClass = NSClassFromString(@"UINavigationItemButtonView");
+    }
+    else if ( [firstParam isEqualToString:@"textField"] ) {
         shorthandClass = [UITextField class];
-    else if( [firstParam isEqualToString:@"tableView"] )
+    }
+    else if ( [firstParam isEqualToString:@"tableView"] ) {
         shorthandClass = [UITableView class];
-    else if( [firstParam isEqualToString:@"tableViewCell"] )
+    }
+    else if ( [firstParam isEqualToString:@"tableViewCell"] ) {
         shorthandClass = [UITableViewCell class];
-    else if( [firstParam isEqualToString:@"threePartButton"] )
-      shorthandClass = NSClassFromString(@"UIThreePartButton");
+    }
+    else if ( [firstParam isEqualToString:@"threePartButton"] ) {
+        shorthandClass = NSClassFromString(@"UIThreePartButton");
+    }
 #else
-    if( [firstParam isEqualToString:@"view"] )
+    if ( [firstParam isEqualToString:@"view"] ) {
         shorthandClass = [NSObject class];
-    else if( [firstParam isEqualToString:@"button"] )
+    }
+    else if ( [firstParam isEqualToString:@"button"] ) {
         shorthandClass = [NSButton class];
-    else if( [firstParam isEqualToString:@"textField"] )
+    }
+    else if ( [firstParam isEqualToString:@"textField"] ) {
         shorthandClass = [NSTextField class];
-    else if( [firstParam isEqualToString:@"tableView"] )
+    }
+    else if ( [firstParam isEqualToString:@"tableView"] ) {
         shorthandClass = [NSTableView class];
+    }
 #endif
 
-    if( shorthandClass )
+    if ( shorthandClass ) {
         return [[[SYClassFilter alloc] initWithClass:shorthandClass] autorelease];
-    else
+    }
+    else {
         return nil;
+    }
 }
 
-- (id<SYFilter>) interpretSectionIntoFilter:(SYSectionParser *)parsedSection{
-    
+- (id<SYFilter>)interpretSectionIntoFilter:(SYSectionParser *)parsedSection {
     id<SYFilter> classFilter = [self interpretSectionAsClassFilterShorthand:parsedSection];
     
-    if( classFilter )
+    if ( classFilter ) {
         return classFilter;
+    }
     
     NSString *firstParam = [[parsedSection params] objectAtIndex:0];
     
-    if( [parsedSection hasNoArgs] ){
-        if( [firstParam isEqualToString:@"parent"] )
+    if ([parsedSection hasNoArgs]) {
+        if ([firstParam isEqualToString:@"parent"]) {
             return [[[SYParents alloc] init] autorelease];
-        if( [firstParam isEqualToString:@"first"] )
+        }
+        else if ([firstParam isEqualToString:@"first"]) {
             return [[[SYNthElementFilter alloc] initWithIndex:0] autorelease];
-        else if( [firstParam isEqualToString:@"descendant"] )
+        }
+        else if ([firstParam isEqualToString:@"descendant"]) {
             return [[[SYClassFilter alloc] initWithClass:[ShelleyView class] includeSelf:YES] autorelease];
-    }else if( [[parsedSection args] count] == 1 ){
-        if( [firstParam isEqualToString:@"view"] ) {
+        }
+    } else if ([[parsedSection args] count] == 1) {
+        
+        if ([firstParam isEqualToString:@"view"]) {
             NSString *firstArg = [[parsedSection args] objectAtIndex:0];
             return [[[SYClassFilter alloc] initWithClass:(NSClassFromString(firstArg))] autorelease];
-        }else if( [firstParam isEqualToString:@"index"] ) {
+        }
+        else if ([firstParam isEqualToString:@"filter"]) {
+            NSString *firstArg = [[parsedSection args] objectAtIndex:0];
+            return [[[SYPredicateFilter alloc] initWithPredicateString:firstArg] autorelease];
+        }
+        else if ([firstParam isEqualToString:@"index"]) {
             NSNumber *firstArg = [[parsedSection args] objectAtIndex:0];
-            return [[[SYNthElementFilter alloc] initWithIndex:[firstArg unsignedIntValue]] autorelease];            
+            return [[[SYNthElementFilter alloc] initWithIndex:[firstArg unsignedIntValue]] autorelease];
         }
     }
     
-    NSString *selectorDesc;
-    if( [parsedSection hasNoArgs] ){
-        selectorDesc = [[parsedSection params] objectAtIndex:0];
+    NSString *selectorDescriptor;
+    if ( [parsedSection hasNoArgs] ){
+        selectorDescriptor = [[parsedSection params] objectAtIndex:0];
     }else{
-        selectorDesc = [[[parsedSection params] componentsJoinedByString:@":"] stringByAppendingString:@":"];
+        selectorDescriptor = [[[parsedSection params] componentsJoinedByString:@":"] stringByAppendingString:@":"];
     }
     
-    return [[[SYSelectorFilter alloc] initWithSelector:NSSelectorFromString(selectorDesc) 
-                                                   args:[parsedSection args]] autorelease];
+    return [[[SYSelectorFilter alloc] initWithSelector:NSSelectorFromString(selectorDescriptor) 
+                                                  args:[parsedSection args]] autorelease];
 }
 
-- (id<SYFilter>) nextFilter{
-    
+- (id<SYFilter>)nextFilter {
     [_scanner scanCharactersFromSet:[NSCharacterSet whitespaceCharacterSet] intoString:nil];
     
-    if( [_scanner isAtEnd] )
+    if ( [_scanner isAtEnd] ) {
         return nil;
+    }
     
     SYSectionParser *sectionParser = [[[SYSectionParser alloc] initWithScanner:_scanner] autorelease];
     [sectionParser parse];
