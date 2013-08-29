@@ -30,9 +30,15 @@
 		*((int *)buffer) = [number intValue];
 	}else if( !strcmp(objCType, @encode(uint)) ){
 		*((uint *)buffer) = [number unsignedIntValue];
-	}else {
-		NSLog(@"Didn't know how to convert NSNumber to type %s", objCType); 
-	}	
+	}else if( !strcmp(objCType, @encode(double)) ){
+		*((double *)buffer) = [number doubleValue];
+	} else if ( !strcmp(objCType, @encode(char)) ) {
+		*((char*)buffer) = [number charValue];
+	} else if ( !strcmp(objCType, @encode(float)) ){
+		*((float *)buffer) = [number floatValue];
+	} else {
+		NSLog(@"Didn't know how to convert NSNumber to type %s", objCType);
+	}
 }
 
 - (NSInvocation *) createInvocationForObject:(id)object{
@@ -58,16 +64,20 @@
 #endif
 	
 	[invocation setSelector:_selector];
-	
-	char invocationBuffer[300]; //let's hope we don't get asked to invoke a method with more than 28 arguments.
-	
+		
 	NSInteger index = 2; // Indices 0 and 1 indicate the hidden arguments self and _cmd, respectively
 	for( id arg in _args ) {
-		if( [arg isKindOfClass:[NSNumber class]] ){
-			void *buffer = &(invocationBuffer[index*10]);
-			[self castNumber:arg toType:[signature getArgumentTypeAtIndex:index] intoBuffer:buffer];
-			[invocation setArgument:buffer atIndex:index];
-		}else {
+        if( [arg isKindOfClass:[NSNumber class]] ){
+            const char* argumentType = [signature getArgumentTypeAtIndex:index];
+            
+            if ( !strcmp(argumentType, @encode(id)) ) {
+                [invocation setArgument:&arg atIndex:index];
+            } else {
+                char buffer[10];
+                [self castNumber:arg toType:argumentType intoBuffer:buffer];
+                [invocation setArgument:buffer atIndex:index];
+            }
+		} else {
 			[invocation setArgument:&arg atIndex:index];
 		}
 		index++;
