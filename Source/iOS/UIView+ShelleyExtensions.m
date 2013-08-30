@@ -7,6 +7,7 @@
 //
 
 #import "LoadableCategory.h"
+#import "Shelley.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -21,15 +22,55 @@ BOOL substringMatch(NSString *actualString, NSString *expectedSubstring){
     return actualString && ([actualString rangeOfString:expectedSubstring].location != NSNotFound);    
 }
 
-@implementation UIView (ShelleyExtensions)
+@implementation NSObject (SYAccessibilityIdentifier)
+
+- (NSString*)SY_accessibilityIdentifier {
+    NSString* accessibilityIdentifier = nil;
+    
+    if ([self respondsToSelector:@selector(accessibilityIdentifier)]) {
+        accessibilityIdentifier = [(id<UIAccessibilityIdentification>) self accessibilityIdentifier];
+    }
+    
+    return accessibilityIdentifier;
+}
+
+- (NSString*)SY_accessibilityLabel {
+    NSString* accessibilityLabel = nil;
+    
+    if ([self respondsToSelector:@selector(accessibilityLabel)]) {
+        accessibilityLabel = [self accessibilityLabel];
+    }
+    
+    return accessibilityLabel;
+}
 
 - (BOOL) marked:(NSString *)targetLabel{
-    return substringMatch([self accessibilityLabel], targetLabel);
+    if (substringMatch([self SY_accessibilityIdentifier], targetLabel)) {
+        return YES;
+    }
+    else if (substringMatch([self SY_accessibilityLabel], targetLabel)) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
 }
 
 - (BOOL) markedExactly:(NSString *)targetLabel{
-    return [[self accessibilityLabel] isEqualToString:targetLabel];
+    if ([targetLabel isEqualToString:[self SY_accessibilityIdentifier]]) {
+        return YES;
+    }
+    else if ([targetLabel isEqualToString:[self SY_accessibilityLabel]]) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
 }
+
+@end
+
+@implementation UIView (ShelleyExtensions)
 
 - (BOOL) isAnimating {
     return (self.layer.animationKeys.count > 0);

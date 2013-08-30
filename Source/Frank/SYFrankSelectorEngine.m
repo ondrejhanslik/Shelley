@@ -31,9 +31,9 @@ static NSString *const registeredName = @"shelley_compat";
     Shelley *shelley = [Shelley withSelectorString:selector];
     
 #if TARGET_OS_IPHONE
-    return [shelley selectFromViews:[[UIApplication sharedApplication] windows]];
+    return [shelley selectFromViews:[NSArray arrayWithObject: [UIApplication sharedApplication]]];
 #else
-    return [shelley selectFromViews: [NSArray arrayWithObject: [NSApplication sharedApplication]]];
+    return [shelley selectFromViews:[NSArray arrayWithObject: [NSApplication sharedApplication]]];
 #endif
 }
 
