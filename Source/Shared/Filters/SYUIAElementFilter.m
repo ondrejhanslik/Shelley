@@ -21,7 +21,7 @@
 #pragma mark - Traits parsing
 
 #ifdef TARGET_OS_IPHONE
-+ (UIAccessibilityTraits)traitFromString:(NSString*)traitString {
++ (UIAccessibilityTraits)traitFromString:(NSString *)traitString {
     traitString = [traitString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
     if ([traitString isEqualToString:@"button"]) {
@@ -77,12 +77,12 @@
     }
 }
 
-+ (UIAccessibilityTraits)traitsFilterFromString:(NSString*)traitsString {
-    NSArray* traitStrings = [traitsString componentsSeparatedByString:@","];
++ (UIAccessibilityTraits)traitsFilterFromString:(NSString *)traitsString {
+    NSArray *traitStrings = [traitsString componentsSeparatedByString:@","];
     
     UIAccessibilityTraits traitsFilter = UIAccessibilityTraitNone;
     
-    for (NSString* traitString in traitStrings) {
+    for (NSString *traitString in traitStrings) {
         traitsFilter |= [self traitFromString:traitString];
     }
     
@@ -153,7 +153,7 @@
     }
     
     for (NSInteger i = 0; i < elementCount; i++) {
-        NSObject* subelement = [element accessibilityElementAtIndex:i];
+        NSObject *subelement = [element accessibilityElementAtIndex:i];
         
         if (subelement != nil) {
             [descendants addObject:subelement];
@@ -163,7 +163,7 @@
     return descendants;
 }
 
-- (NSArray *)elementsToConsiderFromElement:(NSObject*)element {
+- (NSArray *)elementsToConsiderFromElement:(NSObject *)element {
     NSMutableArray *elements = [NSMutableArray array];
     
     [elements addObject:element];
@@ -173,7 +173,7 @@
 }
 
 -(NSArray *)applyToView:(NSObject *)view{
-    NSArray* elements = [self elementsToConsiderFromElement:view];
+    NSArray *elements = [self elementsToConsiderFromElement:view];
     
 #ifdef TARGET_OS_IPHONE
     if (self.traitsFilter == UIAccessibilityTraitNone) {
@@ -182,7 +182,7 @@
     
     NSMutableArray* filteredElements = [NSMutableArray array];
     
-    for (NSObject* element in elements) {
+    for (NSObject *element in elements) {
         if ([element respondsToSelector:@selector(accessibilityTraits)]) {
             UIAccessibilityTraits accessibilityTraits = [element accessibilityTraits];
             

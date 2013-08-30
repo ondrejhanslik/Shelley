@@ -20,6 +20,6 @@
 @property (nonatomic, assign, readonly) ACCESSIBILITY_TRAITS traitsFilter;
 #endif
 
-- (id)initWithTraitsFilter:(NSString*)traitsString;
+- (id)initWithTraitsFilter:(NSString *)traitsString;
 
 @end

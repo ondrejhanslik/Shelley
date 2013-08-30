@@ -11,7 +11,7 @@
 
 @interface SYPredicateFilter ()
 
-@property (nonatomic, retain, readwrite) NSPredicate* predicate;
+@property (nonatomic, retain, readwrite) NSPredicate *predicate;
 
 @end
 
@@ -50,15 +50,15 @@
 }
 
 - (NSArray *)applyToViews:(NSArray *)views {
-    NSMutableArray* results = [NSMutableArray array];
+    NSMutableArray *results = [NSMutableArray array];
     
     BOOL matchesPredicate;
     
-    for (ShelleyView* view in views) {
+    for (ShelleyView *view in views) {
         @try {
             matchesPredicate = [self.predicate evaluateWithObject:view];
         }
-        @catch (NSException* e) {
+        @catch (NSException *e) {
             matchesPredicate = NO;
         }
         
