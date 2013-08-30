@@ -12,7 +12,10 @@
 #import "SYClassFilter.h"
 #import "SYNthElementFilter.h"
 #import "SYPredicateFilter.h"
+
+#if TARGET_OS_IPHONE
 #import "SYUIAElementFilter.h"
+#endif
 
 @interface SYSectionParser : NSObject {
     NSScanner *_scanner;
@@ -295,9 +298,11 @@
         else if ([firstParam isEqualToString:@"descendant"]) {
             return [[[SYClassFilter alloc] initWithClass:[ShelleyView class] includeSelf:YES] autorelease];
         }
+#if TARGET_OS_IPHONE
         else if ([firstParam isEqualToString:@"uiaelement"]) {
             return [[[SYUIAElementFilter alloc] init] autorelease];
         }
+#endif
     } else if ([[parsedSection args] count] == 1) {
         if ([firstParam isEqualToString:@"view"]) {
             NSString *firstArg = [[parsedSection args] objectAtIndex:0];
@@ -311,10 +316,12 @@
             NSNumber *firstArg = [[parsedSection args] objectAtIndex:0];
             return [[[SYNthElementFilter alloc] initWithIndex:[firstArg unsignedIntValue]] autorelease];
         }
+#if TARGET_OS_IPHONE
         else if ([firstParam isEqualToString:@"uiaelement"]) {
             NSString *firstArg = [[parsedSection args] objectAtIndex:0];
             return [[[SYUIAElementFilter alloc] initWithTraitsFilter:firstArg] autorelease];
         }
+#endif
     }
     
     NSString *selectorDescriptor;

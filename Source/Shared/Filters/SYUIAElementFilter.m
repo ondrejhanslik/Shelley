@@ -10,7 +10,7 @@
 
 @interface SYUIAElementFilter ()
 
-@property (nonatomic, assign, readwrite) ACCESSIBILITY_TRAITS traitsFilter;
+@property (nonatomic, assign, readwrite) UIAccessibilityTraits traitsFilter;
 
 @end
 
@@ -20,7 +20,6 @@
 
 #pragma mark - Traits parsing
 
-#ifdef TARGET_OS_IPHONE
 + (UIAccessibilityTraits)traitFromString:(NSString *)traitString {
     traitString = [traitString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
@@ -88,7 +87,6 @@
     
     return traitsFilter;
 }
-#endif
 
 #pragma mark - Life cycle
 
@@ -103,9 +101,7 @@
         return nil;
     }
     
-#ifdef TARGET_OS_IPHONE
     self.traitsFilter = [[self class] traitsFilterFromString:traitsString];
-#endif
     
     return self;
 }
@@ -119,7 +115,6 @@
 + (NSArray *)allDescendantsOf:(NSObject *)element{
     NSMutableArray *descendants = [NSMutableArray array];
     
-#if TARGET_OS_IPHONE
     if ([element isKindOfClass:[UIApplication class]]) {
         for (UIWindow *window in [(UIApplication *) element windows]) {
             [descendants addObject:window];
@@ -132,15 +127,6 @@
             [descendants addObjectsFromArray:[self allDescendantsOf:subview]];
         }
     }
-#else
-    if ([element respondsToSelector: @selector(FEX_children)]) {
-        for (id child in [element performSelector:@selector(FEX_children)]) {
-            [descendants addObject:child];
-            [descendants addObjectsFromArray:[self allDescendantsOf:child]];
-        }
-    }
-    
-#endif
 
     if (![element respondsToSelector:@selector(accessibilityElementCount)]) {
         return descendants;
@@ -175,7 +161,6 @@
 -(NSArray *)applyToView:(NSObject *)view{
     NSArray *elements = [self elementsToConsiderFromElement:view];
     
-#ifdef TARGET_OS_IPHONE
     if (self.traitsFilter == UIAccessibilityTraitNone) {
         return elements;
     }
@@ -193,9 +178,6 @@
     }
     
     return filteredElements;
-#else
-    return elements;
-#endif
 }
 
 @end

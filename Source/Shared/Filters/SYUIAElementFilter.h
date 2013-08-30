@@ -8,17 +8,9 @@
 
 #import "SYArrayFilterTemplate.h"
 
-#if TARGET_OS_IPHONE
-#define ACCESSIBILITY_TRAITS UIAccessibilityTraits
-#else
-#define ACCESSIBILITY_TRAITS NSUinteger
-#endif
-
 @interface SYUIAElementFilter : SYArrayFilterTemplate
 
-#if TARGET_OS_IPHONE
-@property (nonatomic, assign, readonly) ACCESSIBILITY_TRAITS traitsFilter;
-#endif
+@property (nonatomic, assign, readonly) UIAccessibilityTraits traitsFilter;
 
 - (id)initWithTraitsFilter:(NSString *)traitsString;
 
