@@ -17,7 +17,11 @@
 #if TARGET_OS_IPHONE
     ShelleyView *currentView = view;
     
-    while(( currentView = [currentView superview] )){
+    if (![view isKindOfClass:[UIView class]]) {
+        return ancestors;
+    }
+    
+    while(( currentView = [(UIView*) currentView superview] )){
         [ancestors addObject:currentView];
     }
 #else

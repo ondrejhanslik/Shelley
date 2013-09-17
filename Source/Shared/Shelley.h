@@ -11,7 +11,7 @@
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 
-#define ShelleyView UIView
+#define ShelleyView NSObject
 
 #else
 

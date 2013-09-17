@@ -1,5 +1,5 @@
 //
-//  SYPredicateFilterTests.h
+//  SYSelectorFilterTests.h
 //  Shelley
 //
 //  Created by Pete Hodgson on 7/22/11.
@@ -12,7 +12,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface SYPredicateFilterTests : SenTestCase {
+@interface SYSelectorFilterTests : SenTestCase {
     
 }
 

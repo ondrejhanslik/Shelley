@@ -21,9 +21,17 @@
     NSMutableArray *descendants = [NSMutableArray array];
     
 #if TARGET_OS_IPHONE
-    for (ShelleyView *subview in [view subviews]) {
-        [descendants addObject:subview];
-        [descendants addObjectsFromArray:[self allDescendantsOf:subview]];
+    if ([view isKindOfClass:[UIApplication class]]) {
+        for (UIWindow *window in [(UIApplication* )view windows]) {
+            [descendants addObject:window];
+            [descendants addObjectsFromArray:[self allDescendantsOf:window]];
+        }        
+    }
+    else if ([view isKindOfClass:[UIView class]]) {
+        for (UIView *subview in [(UIView* )view subviews]) {
+            [descendants addObject:subview];
+            [descendants addObjectsFromArray:[self allDescendantsOf:subview]];
+        }
     }
 #else
     if ([view respondsToSelector: @selector(FEX_children)])
@@ -69,7 +77,6 @@
     [allViews addObjectsFromArray:[SYClassFilter allDescendantsOf:view]];
     return allViews;
 }
-
 
 -(NSArray *)applyToView:(ShelleyView *)view{
     NSArray *allViews = [self viewsToConsiderFromView:view];

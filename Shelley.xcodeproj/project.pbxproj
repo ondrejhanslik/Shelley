@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06788FF317CF17F000541459 /* SYPredicateFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 06788FF117CF17F000541459 /* SYPredicateFilter.h */; };
+		06788FF417CF17F000541459 /* SYPredicateFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 06788FF117CF17F000541459 /* SYPredicateFilter.h */; };
+		06788FF517CF17F000541459 /* SYPredicateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 06788FF217CF17F000541459 /* SYPredicateFilter.m */; };
+		06788FF617CF17F000541459 /* SYPredicateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 06788FF217CF17F000541459 /* SYPredicateFilter.m */; };
+		06788FF917CF38DB00541459 /* SYUIAElementFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 06788FF717CF38D900541459 /* SYUIAElementFilter.h */; };
+		06788FFA17CF38DB00541459 /* SYUIAElementFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 06788FF817CF38DA00541459 /* SYUIAElementFilter.m */; };
 		3009124B16A599960023CC56 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3009124A16A599960023CC56 /* SenTestingKit.framework */; };
 		30313F7B16AB171E00DC6D3F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30313F7A16AB171E00DC6D3F /* Cocoa.framework */; };
 		30313F7D16ABB3E300DC6D3F /* ShelleyMac-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 30313F7C16ABB3E300DC6D3F /* ShelleyMac-Prefix.pch */; };
@@ -15,13 +21,13 @@
 		3089D99716A8E4B40049CD1D /* SYParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D68761F613D4092A0057A375 /* SYParserTests.m */; };
 		3089D99816A8E4B40049CD1D /* SYParentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D610CA6113D9F8D8008AB1F5 /* SYParentsTests.m */; };
 		3089D99916A8E4B40049CD1D /* SenTestCase+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D610CA6413D9F9E7008AB1F5 /* SenTestCase+Extensions.m */; };
-		3089D99A16A8E4B40049CD1D /* SYPredicateFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D610CA6713DA0752008AB1F5 /* SYPredicateFilterTests.m */; };
+		3089D99A16A8E4B40049CD1D /* SYSelectorFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D610CA6713DA0752008AB1F5 /* SYSelectorFilterTests.m */; };
 		3089D9A316A8E4DA0049CD1D /* NSObject+ShelleyExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 306097C016A6F4D40032EC9F /* NSObject+ShelleyExtensions.m */; };
 		30AAE66616A8E206004A7D8A /* NSViewWithAccessibilityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AAE66516A8E206004A7D8A /* NSViewWithAccessibilityLabel.m */; };
 		4D77E71915188374000D0EEE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D77E71815188374000D0EEE /* QuartzCore.framework */; };
 		D610CA6213D9F8D8008AB1F5 /* SYParentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D610CA6113D9F8D8008AB1F5 /* SYParentsTests.m */; };
 		D610CA6513D9F9E7008AB1F5 /* SenTestCase+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D610CA6413D9F9E7008AB1F5 /* SenTestCase+Extensions.m */; };
-		D610CA6813DA0752008AB1F5 /* SYPredicateFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D610CA6713DA0752008AB1F5 /* SYPredicateFilterTests.m */; };
+		D610CA6813DA0752008AB1F5 /* SYSelectorFilterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D610CA6713DA0752008AB1F5 /* SYSelectorFilterTests.m */; };
 		D610CA6C13DA15A4008AB1F5 /* UIView+ShelleyExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D610CA6A13DA15A3008AB1F5 /* UIView+ShelleyExtensions.m */; };
 		D610CA6D13DA15A4008AB1F5 /* UIView+ShelleyExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D610CA6A13DA15A3008AB1F5 /* UIView+ShelleyExtensions.m */; };
 		D648FB3913E5EA7E003FBE5A /* UIViewWithAccessibilityLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D648FB3813E5EA7E003FBE5A /* UIViewWithAccessibilityLabel.m */; };
@@ -53,11 +59,11 @@
 		F85939E3173452100074CB9E /* SYParents.m in Sources */ = {isa = PBXBuildFile; fileRef = F85939C1173452100074CB9E /* SYParents.m */; };
 		F85939E4173452100074CB9E /* SYParents.m in Sources */ = {isa = PBXBuildFile; fileRef = F85939C1173452100074CB9E /* SYParents.m */; };
 		F85939E5173452100074CB9E /* SYParents.m in Sources */ = {isa = PBXBuildFile; fileRef = F85939C1173452100074CB9E /* SYParents.m */; };
-		F85939E6173452110074CB9E /* SYPredicateFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = F85939C2173452100074CB9E /* SYPredicateFilter.h */; };
-		F85939E8173452110074CB9E /* SYPredicateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F85939C3173452100074CB9E /* SYPredicateFilter.m */; };
-		F85939E9173452110074CB9E /* SYPredicateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F85939C3173452100074CB9E /* SYPredicateFilter.m */; };
-		F85939EA173452110074CB9E /* SYPredicateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F85939C3173452100074CB9E /* SYPredicateFilter.m */; };
-		F85939EB173452110074CB9E /* SYPredicateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F85939C3173452100074CB9E /* SYPredicateFilter.m */; };
+		F85939E6173452110074CB9E /* SYSelectorFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = F85939C2173452100074CB9E /* SYSelectorFilter.h */; };
+		F85939E8173452110074CB9E /* SYSelectorFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F85939C3173452100074CB9E /* SYSelectorFilter.m */; };
+		F85939E9173452110074CB9E /* SYSelectorFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F85939C3173452100074CB9E /* SYSelectorFilter.m */; };
+		F85939EA173452110074CB9E /* SYSelectorFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F85939C3173452100074CB9E /* SYSelectorFilter.m */; };
+		F85939EB173452110074CB9E /* SYSelectorFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = F85939C3173452100074CB9E /* SYSelectorFilter.m */; };
 		F85939EC173452110074CB9E /* LoadableCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = F85939C4173452100074CB9E /* LoadableCategory.h */; };
 		F85939EE173452110074CB9E /* SelectorEngineRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = F85939C5173452100074CB9E /* SelectorEngineRegistry.h */; };
 		F85939F0173452110074CB9E /* Shelley.h in Headers */ = {isa = PBXBuildFile; fileRef = F85939C6173452100074CB9E /* Shelley.h */; };
@@ -87,6 +93,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06788FF117CF17F000541459 /* SYPredicateFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYPredicateFilter.h; sourceTree = "<group>"; };
+		06788FF217CF17F000541459 /* SYPredicateFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYPredicateFilter.m; sourceTree = "<group>"; };
+		06788FF717CF38D900541459 /* SYUIAElementFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUIAElementFilter.h; sourceTree = "<group>"; };
+		06788FF817CF38DA00541459 /* SYUIAElementFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUIAElementFilter.m; sourceTree = "<group>"; };
 		3009123716A599960023CC56 /* libShelleyMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libShelleyMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3009123B16A599960023CC56 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		3009123C16A599960023CC56 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -105,8 +115,8 @@
 		D610CA6113D9F8D8008AB1F5 /* SYParentsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYParentsTests.m; sourceTree = "<group>"; };
 		D610CA6313D9F9E7008AB1F5 /* SenTestCase+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SenTestCase+Extensions.h"; sourceTree = "<group>"; };
 		D610CA6413D9F9E7008AB1F5 /* SenTestCase+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SenTestCase+Extensions.m"; sourceTree = "<group>"; };
-		D610CA6613DA0752008AB1F5 /* SYPredicateFilterTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYPredicateFilterTests.h; sourceTree = "<group>"; };
-		D610CA6713DA0752008AB1F5 /* SYPredicateFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYPredicateFilterTests.m; sourceTree = "<group>"; };
+		D610CA6613DA0752008AB1F5 /* SYSelectorFilterTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSelectorFilterTests.h; sourceTree = "<group>"; };
+		D610CA6713DA0752008AB1F5 /* SYSelectorFilterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSelectorFilterTests.m; sourceTree = "<group>"; };
 		D610CA6A13DA15A3008AB1F5 /* UIView+ShelleyExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ShelleyExtensions.m"; sourceTree = "<group>"; };
 		D648FB3713E5EA7E003FBE5A /* UIViewWithAccessibilityLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewWithAccessibilityLabel.h; sourceTree = "<group>"; };
 		D648FB3813E5EA7E003FBE5A /* UIViewWithAccessibilityLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewWithAccessibilityLabel.m; sourceTree = "<group>"; };
@@ -132,8 +142,8 @@
 		F85939BF173452100074CB9E /* SYNthElementFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYNthElementFilter.m; sourceTree = "<group>"; };
 		F85939C0173452100074CB9E /* SYParents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYParents.h; sourceTree = "<group>"; };
 		F85939C1173452100074CB9E /* SYParents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYParents.m; sourceTree = "<group>"; };
-		F85939C2173452100074CB9E /* SYPredicateFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYPredicateFilter.h; sourceTree = "<group>"; };
-		F85939C3173452100074CB9E /* SYPredicateFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYPredicateFilter.m; sourceTree = "<group>"; };
+		F85939C2173452100074CB9E /* SYSelectorFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSelectorFilter.h; sourceTree = "<group>"; };
+		F85939C3173452100074CB9E /* SYSelectorFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSelectorFilter.m; sourceTree = "<group>"; };
 		F85939C4173452100074CB9E /* LoadableCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadableCategory.h; sourceTree = "<group>"; };
 		F85939C5173452100074CB9E /* SelectorEngineRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectorEngineRegistry.h; sourceTree = "<group>"; };
 		F85939C6173452100074CB9E /* Shelley.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shelley.h; sourceTree = "<group>"; };
@@ -209,8 +219,8 @@
 				D610CA6113D9F8D8008AB1F5 /* SYParentsTests.m */,
 				D610CA6313D9F9E7008AB1F5 /* SenTestCase+Extensions.h */,
 				D610CA6413D9F9E7008AB1F5 /* SenTestCase+Extensions.m */,
-				D610CA6613DA0752008AB1F5 /* SYPredicateFilterTests.h */,
-				D610CA6713DA0752008AB1F5 /* SYPredicateFilterTests.m */,
+				D610CA6613DA0752008AB1F5 /* SYSelectorFilterTests.h */,
+				D610CA6713DA0752008AB1F5 /* SYSelectorFilterTests.m */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -327,8 +337,12 @@
 				F85939BF173452100074CB9E /* SYNthElementFilter.m */,
 				F85939C0173452100074CB9E /* SYParents.h */,
 				F85939C1173452100074CB9E /* SYParents.m */,
-				F85939C2173452100074CB9E /* SYPredicateFilter.h */,
-				F85939C3173452100074CB9E /* SYPredicateFilter.m */,
+				06788FF117CF17F000541459 /* SYPredicateFilter.h */,
+				06788FF217CF17F000541459 /* SYPredicateFilter.m */,
+				F85939C2173452100074CB9E /* SYSelectorFilter.h */,
+				F85939C3173452100074CB9E /* SYSelectorFilter.m */,
+				06788FF717CF38D900541459 /* SYUIAElementFilter.h */,
+				06788FF817CF38DA00541459 /* SYUIAElementFilter.m */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -351,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F85939F7173452110074CB9E /* SYFrankSelectorEngine.h in Headers */,
+				06788FF417CF17F000541459 /* SYPredicateFilter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,12 +379,14 @@
 				F85939D8173452100074CB9E /* SYFilter.h in Headers */,
 				F85939DA173452100074CB9E /* SYNthElementFilter.h in Headers */,
 				F85939E0173452100074CB9E /* SYParents.h in Headers */,
-				F85939E6173452110074CB9E /* SYPredicateFilter.h in Headers */,
+				F85939E6173452110074CB9E /* SYSelectorFilter.h in Headers */,
 				F85939EC173452110074CB9E /* LoadableCategory.h in Headers */,
 				F85939EE173452110074CB9E /* SelectorEngineRegistry.h in Headers */,
 				F85939F0173452110074CB9E /* Shelley.h in Headers */,
 				F85939F6173452110074CB9E /* SYFrankSelectorEngine.h in Headers */,
 				F85939FC173452110074CB9E /* SYParser.h in Headers */,
+				06788FF317CF17F000541459 /* SYPredicateFilter.h in Headers */,
+				06788FF917CF38DB00541459 /* SYUIAElementFilter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,10 +550,11 @@
 				F85939D6173452100074CB9E /* SYClassFilter.m in Sources */,
 				F85939DE173452100074CB9E /* SYNthElementFilter.m in Sources */,
 				F85939E4173452100074CB9E /* SYParents.m in Sources */,
-				F85939EA173452110074CB9E /* SYPredicateFilter.m in Sources */,
+				F85939EA173452110074CB9E /* SYSelectorFilter.m in Sources */,
 				F85939F4173452110074CB9E /* Shelley.m in Sources */,
 				F85939FA173452110074CB9E /* SYFrankSelectorEngine.m in Sources */,
 				F8593A00173452110074CB9E /* SYParser.m in Sources */,
+				06788FF617CF17F000541459 /* SYPredicateFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,13 +567,13 @@
 				3089D99716A8E4B40049CD1D /* SYParserTests.m in Sources */,
 				3089D99816A8E4B40049CD1D /* SYParentsTests.m in Sources */,
 				3089D99916A8E4B40049CD1D /* SenTestCase+Extensions.m in Sources */,
-				3089D99A16A8E4B40049CD1D /* SYPredicateFilterTests.m in Sources */,
+				3089D99A16A8E4B40049CD1D /* SYSelectorFilterTests.m in Sources */,
 				30AAE66616A8E206004A7D8A /* NSViewWithAccessibilityLabel.m in Sources */,
 				F85939D1173452100074CB9E /* SYArrayFilterTemplate.m in Sources */,
 				F85939D7173452100074CB9E /* SYClassFilter.m in Sources */,
 				F85939DF173452100074CB9E /* SYNthElementFilter.m in Sources */,
 				F85939E5173452100074CB9E /* SYParents.m in Sources */,
-				F85939EB173452110074CB9E /* SYPredicateFilter.m in Sources */,
+				F85939EB173452110074CB9E /* SYSelectorFilter.m in Sources */,
 				F85939F5173452110074CB9E /* Shelley.m in Sources */,
 				F8593A01173452110074CB9E /* SYParser.m in Sources */,
 			);
@@ -569,14 +587,14 @@
 				D68761F713D4092A0057A375 /* SYParserTests.m in Sources */,
 				D610CA6213D9F8D8008AB1F5 /* SYParentsTests.m in Sources */,
 				D610CA6513D9F9E7008AB1F5 /* SenTestCase+Extensions.m in Sources */,
-				D610CA6813DA0752008AB1F5 /* SYPredicateFilterTests.m in Sources */,
+				D610CA6813DA0752008AB1F5 /* SYSelectorFilterTests.m in Sources */,
 				D610CA6D13DA15A4008AB1F5 /* UIView+ShelleyExtensions.m in Sources */,
 				D648FB3913E5EA7E003FBE5A /* UIViewWithAccessibilityLabel.m in Sources */,
 				F85939CF173452100074CB9E /* SYArrayFilterTemplate.m in Sources */,
 				F85939D5173452100074CB9E /* SYClassFilter.m in Sources */,
 				F85939DD173452100074CB9E /* SYNthElementFilter.m in Sources */,
 				F85939E3173452100074CB9E /* SYParents.m in Sources */,
-				F85939E9173452110074CB9E /* SYPredicateFilter.m in Sources */,
+				F85939E9173452110074CB9E /* SYSelectorFilter.m in Sources */,
 				F85939F3173452110074CB9E /* Shelley.m in Sources */,
 				F85939FF173452110074CB9E /* SYParser.m in Sources */,
 			);
@@ -591,10 +609,12 @@
 				F85939D4173452100074CB9E /* SYClassFilter.m in Sources */,
 				F85939DC173452100074CB9E /* SYNthElementFilter.m in Sources */,
 				F85939E2173452100074CB9E /* SYParents.m in Sources */,
-				F85939E8173452110074CB9E /* SYPredicateFilter.m in Sources */,
+				F85939E8173452110074CB9E /* SYSelectorFilter.m in Sources */,
 				F85939F2173452110074CB9E /* Shelley.m in Sources */,
 				F85939F8173452110074CB9E /* SYFrankSelectorEngine.m in Sources */,
 				F85939FE173452110074CB9E /* SYParser.m in Sources */,
+				06788FF517CF17F000541459 /* SYPredicateFilter.m in Sources */,
+				06788FFA17CF38DB00541459 /* SYUIAElementFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

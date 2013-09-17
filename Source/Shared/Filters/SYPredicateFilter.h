@@ -2,20 +2,16 @@
 //  SYPredicateFilter.h
 //  Shelley
 //
-//  Created by Pete Hodgson on 7/20/11.
-//  Copyright 2011 ThoughtWorks. All rights reserved.
+//  Created by Ondrej Hanslik on 8/29/13.
+//  Copyright (c) 2013 ThoughtWorks. All rights reserved.
 //
 
-#import "SYArrayFilterTemplate.h"
+#import "SYFilter.h"
 
-@interface SYPredicateFilter : SYArrayFilterTemplate {
-    SEL _selector;
-    NSArray *_args;
-    
-}
-@property (readonly) SEL selector;
-@property (readonly) NSArray *args;
+@interface SYPredicateFilter : NSObject <SYFilter>
 
-- (id)initWithSelector:(SEL)selector args:(NSArray *)args;
+@property (nonatomic, retain, readonly) NSPredicate *predicate;
+
+- (id)initWithPredicateString:(NSString *)predicateString;
 
 @end

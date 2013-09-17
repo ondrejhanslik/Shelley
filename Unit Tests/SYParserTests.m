@@ -9,7 +9,7 @@
 #import "SYParserTests.h"
 #import "SYParser.h"
 #import "SYParents.h"
-#import "SYPredicateFilter.h"
+#import "SYSelectorFilter.h"
 #import "SYClassFilter.h"
 #import "SYNthElementFilter.h"
 
@@ -49,11 +49,11 @@
     SYParser *parser = [[SYParser alloc] initWithSelectorString:@"noArgMethod"];
     
     id<SYFilter> filter = [parser nextFilter];
-    STAssertTrue([filter isKindOfClass:[SYPredicateFilter class]], nil);
+    STAssertTrue([filter isKindOfClass:[SYSelectorFilter class]], nil);
     
-    SYPredicateFilter *predicateFilter = (SYPredicateFilter *)filter;
-    STAssertEquals((SEL)[predicateFilter selector], @selector(noArgMethod), nil);
-    STAssertEquals([[predicateFilter args] count], (NSUInteger)0, nil );
+    SYSelectorFilter *selectorFilter = (SYSelectorFilter *)filter;
+    STAssertEquals([selectorFilter selector], @selector(noArgMethod), nil);
+    STAssertEquals([[selectorFilter args] count], (NSUInteger)0, nil );
 
 }
 
@@ -61,13 +61,13 @@
     SYParser *parser = [[SYParser alloc] initWithSelectorString:@"singleArg:123"];
     
     id<SYFilter> filter = [parser nextFilter];
-    STAssertTrue([filter isKindOfClass:[SYPredicateFilter class]], nil);
+    STAssertTrue([filter isKindOfClass:[SYSelectorFilter class]], nil);
     
-    SYPredicateFilter *predicateFilter = (SYPredicateFilter *)filter;
-    STAssertEquals((SEL)[predicateFilter selector], @selector(singleArg:), nil);
-    STAssertEquals([[predicateFilter args] count], (NSUInteger)1,nil );
+    SYSelectorFilter *selectorFilter = (SYSelectorFilter *)filter;
+    STAssertEquals([selectorFilter selector], @selector(singleArg:), nil);
+    STAssertEquals([[selectorFilter args] count], (NSUInteger)1,nil );
     
-    NSNumber *firstArg = [[predicateFilter args] objectAtIndex:0];
+    NSNumber *firstArg = [[selectorFilter args] objectAtIndex:0];
     STAssertTrue( [firstArg isEqualToNumber:[NSNumber numberWithInt:123]], nil);
 }
 
@@ -75,19 +75,19 @@
     SYParser *parser = [[SYParser alloc] initWithSelectorString:@"argOne:123argTwo:'foo'argThree:789"];
     
     id<SYFilter> filter = [parser nextFilter];
-    STAssertTrue([filter isKindOfClass:[SYPredicateFilter class]], nil);
+    STAssertTrue([filter isKindOfClass:[SYSelectorFilter class]], nil);
     
-    SYPredicateFilter *predicateFilter = (SYPredicateFilter *)filter;
-    STAssertEquals((SEL)[predicateFilter selector], @selector(argOne:argTwo:argThree:), nil);
-    STAssertEquals([[predicateFilter args] count], (NSUInteger)3,nil );
+    SYSelectorFilter *selectorFilter = (SYSelectorFilter *)filter;
+    STAssertEquals([selectorFilter selector], @selector(argOne:argTwo:argThree:), nil);
+    STAssertEquals([[selectorFilter args] count], (NSUInteger)3,nil );
     
-    NSNumber *firstArg = [[predicateFilter args] objectAtIndex:0];
+    NSNumber *firstArg = [[selectorFilter args] objectAtIndex:0];
     STAssertTrue( [firstArg isEqualToNumber:[NSNumber numberWithInt:123]], nil);
 
-    NSString *secondArg = [[predicateFilter args] objectAtIndex:1];
+    NSString *secondArg = [[selectorFilter args] objectAtIndex:1];
     STAssertTrue( [secondArg isEqualToString:@"foo"], nil);
     
-    NSNumber *thirdArg = [[predicateFilter args] objectAtIndex:2];
+    NSNumber *thirdArg = [[selectorFilter args] objectAtIndex:2];
     STAssertTrue( [thirdArg isEqualToNumber:[NSNumber numberWithInt:789]], nil);
 }
 
@@ -95,12 +95,12 @@
     SYParser *parser = [[SYParser alloc] initWithSelectorString:@"foo:'xyz'"];
     
     id<SYFilter> filter = [parser nextFilter];
-    STAssertTrue([filter isKindOfClass:[SYPredicateFilter class]], nil);
+    STAssertTrue([filter isKindOfClass:[SYSelectorFilter class]], nil);
     
-    SYPredicateFilter *predicateFilter = (SYPredicateFilter *)filter;
-    STAssertEquals((SEL)[predicateFilter selector], @selector(foo:), nil);
-    STAssertEquals([[predicateFilter args] count], (NSUInteger)1,nil );
-    STAssertTrue([[[predicateFilter args] objectAtIndex:0] isEqualToString:@"xyz"],nil );
+    SYSelectorFilter *selectorFilter = (SYSelectorFilter *)filter;
+    STAssertEquals([selectorFilter selector], @selector(foo:), nil);
+    STAssertEquals([[selectorFilter args] count], (NSUInteger)1,nil );
+    STAssertTrue([[[selectorFilter args] objectAtIndex:0] isEqualToString:@"xyz"],nil );
 }
 
 - (void) testParsesDoubleQuoteStringArguments {
@@ -108,10 +108,10 @@
     
     id<SYFilter> filter = [parser nextFilter];
     
-    SYPredicateFilter *predicateFilter = (SYPredicateFilter *)filter;
-    STAssertEquals((SEL)[predicateFilter selector], @selector(foo:), nil);
-    STAssertEquals([[predicateFilter args] count], (NSUInteger)1,nil );
-    STAssertTrue([[[predicateFilter args] objectAtIndex:0] isEqualToString:@"xyz"],nil );
+    SYSelectorFilter *selectorFilter = (SYSelectorFilter *)filter;
+    STAssertEquals([selectorFilter selector], @selector(foo:), nil);
+    STAssertEquals([[selectorFilter args] count], (NSUInteger)1,nil );
+    STAssertTrue([[[selectorFilter args] objectAtIndex:0] isEqualToString:@"xyz"],nil );
 }
 
 - (void) testParsesQuotedStringsContainingSpaces {
@@ -119,9 +119,9 @@
     
     id<SYFilter> filter = [parser nextFilter];
     
-    SYPredicateFilter *predicateFilter = (SYPredicateFilter *)filter;
-    STAssertEquals([[predicateFilter args] count], (NSUInteger)1,nil );
-    STAssertTrue([[[predicateFilter args] objectAtIndex:0] isEqualToString:@"string with spaces"],nil );
+    SYSelectorFilter *selectorFilter = (SYSelectorFilter *)filter;
+    STAssertEquals([[selectorFilter args] count], (NSUInteger)1,nil );
+    STAssertTrue([[[selectorFilter args] objectAtIndex:0] isEqualToString:@"string with spaces"],nil );
 
 }
 
@@ -199,7 +199,7 @@
 #endif
     
     filter = [parser nextFilter];
-    STAssertTrue([filter isKindOfClass:[SYPredicateFilter class]], nil);
+    STAssertTrue([filter isKindOfClass:[SYSelectorFilter class]], nil);
     
     filter = [parser nextFilter];
     STAssertNil(filter, nil);
