@@ -13,6 +13,8 @@
 		06788FF617CF17F000541459 /* SYPredicateFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 06788FF217CF17F000541459 /* SYPredicateFilter.m */; };
 		06788FF917CF38DB00541459 /* SYUIAElementFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 06788FF717CF38D900541459 /* SYUIAElementFilter.h */; };
 		06788FFA17CF38DB00541459 /* SYUIAElementFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 06788FF817CF38DA00541459 /* SYUIAElementFilter.m */; };
+		06CF90BC17EB324100BCFD82 /* SYSortFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 06CF90BA17EB324100BCFD82 /* SYSortFilter.h */; };
+		06CF90BE17EB324100BCFD82 /* SYSortFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CF90BB17EB324100BCFD82 /* SYSortFilter.m */; };
 		3009124B16A599960023CC56 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3009124A16A599960023CC56 /* SenTestingKit.framework */; };
 		30313F7B16AB171E00DC6D3F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30313F7A16AB171E00DC6D3F /* Cocoa.framework */; };
 		30313F7D16ABB3E300DC6D3F /* ShelleyMac-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 30313F7C16ABB3E300DC6D3F /* ShelleyMac-Prefix.pch */; };
@@ -97,6 +99,8 @@
 		06788FF217CF17F000541459 /* SYPredicateFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYPredicateFilter.m; sourceTree = "<group>"; };
 		06788FF717CF38D900541459 /* SYUIAElementFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYUIAElementFilter.h; sourceTree = "<group>"; };
 		06788FF817CF38DA00541459 /* SYUIAElementFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYUIAElementFilter.m; sourceTree = "<group>"; };
+		06CF90BA17EB324100BCFD82 /* SYSortFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYSortFilter.h; sourceTree = "<group>"; };
+		06CF90BB17EB324100BCFD82 /* SYSortFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYSortFilter.m; sourceTree = "<group>"; };
 		3009123716A599960023CC56 /* libShelleyMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libShelleyMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3009123B16A599960023CC56 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		3009123C16A599960023CC56 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -341,6 +345,8 @@
 				06788FF217CF17F000541459 /* SYPredicateFilter.m */,
 				F85939C2173452100074CB9E /* SYSelectorFilter.h */,
 				F85939C3173452100074CB9E /* SYSelectorFilter.m */,
+				06CF90BA17EB324100BCFD82 /* SYSortFilter.h */,
+				06CF90BB17EB324100BCFD82 /* SYSortFilter.m */,
 				06788FF717CF38D900541459 /* SYUIAElementFilter.h */,
 				06788FF817CF38DA00541459 /* SYUIAElementFilter.m */,
 			);
@@ -387,6 +393,7 @@
 				F85939FC173452110074CB9E /* SYParser.h in Headers */,
 				06788FF317CF17F000541459 /* SYPredicateFilter.h in Headers */,
 				06788FF917CF38DB00541459 /* SYUIAElementFilter.h in Headers */,
+				06CF90BC17EB324100BCFD82 /* SYSortFilter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +614,7 @@
 				D610CA6C13DA15A4008AB1F5 /* UIView+ShelleyExtensions.m in Sources */,
 				F85939CE173452100074CB9E /* SYArrayFilterTemplate.m in Sources */,
 				F85939D4173452100074CB9E /* SYClassFilter.m in Sources */,
+				06CF90BE17EB324100BCFD82 /* SYSortFilter.m in Sources */,
 				F85939DC173452100074CB9E /* SYNthElementFilter.m in Sources */,
 				F85939E2173452100074CB9E /* SYParents.m in Sources */,
 				F85939E8173452110074CB9E /* SYSelectorFilter.m in Sources */,

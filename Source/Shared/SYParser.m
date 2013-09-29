@@ -14,6 +14,7 @@
 #import "SYPredicateFilter.h"
 
 #if TARGET_OS_IPHONE
+#import "SYSortFilter.h"
 #import "SYUIAElementFilter.h"
 #endif
 
@@ -320,6 +321,10 @@
         else if ([firstParam isEqualToString:@"uiaelement"]) {
             NSString *firstArg = [[parsedSection args] objectAtIndex:0];
             return [[[SYUIAElementFilter alloc] initWithTraitsFilter:firstArg] autorelease];
+        }
+        else if ([firstParam isEqualToString:@"sort"]) {
+            NSString *firstArg = [[parsedSection args] objectAtIndex:0];
+            return [[[SYSortFilter alloc] initWithSortDescriptor:firstArg] autorelease];
         }
 #endif
     }
