@@ -33,7 +33,7 @@ BOOL substringMatch(NSString *actualString, NSString *expectedSubstring){
 
 - (BOOL) isAnimating {
     if ([self respondsToSelector:@selector(motionEffects)]) {
-        return (self.layer.animationKeys.count > self.motionEffects.count);
+        return (self.layer.animationKeys.count > [[self performSelector: @selector(motionEffects)] count]);
     }
     else {
         return (self.layer.animationKeys.count > 0);
