@@ -11,6 +11,7 @@
 @protocol SelectorEngine <NSObject>
 
 - (NSArray *) selectViewsWithSelector:(NSString *)selector;
+- (NSArray *) selectViewsWithSelector:(NSString *)selector inWindows:(NSArray *)windows;
 
 @end
 

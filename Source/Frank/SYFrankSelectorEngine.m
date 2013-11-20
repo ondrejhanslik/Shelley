@@ -26,15 +26,19 @@ static NSString *const registeredName = @"shelley_compat";
 }
 
 - (NSArray *) selectViewsWithSelector:(NSString *)selector {
-    NSLog( @"Using %s to select views with selector: %@", VERSIONED_NAME, selector );
-    
-    Shelley *shelley = [Shelley withSelectorString:selector];
-    
 #if TARGET_OS_IPHONE
-    return [shelley selectFromViews:[[UIApplication sharedApplication] windows]];
+    return [self selectViewsWithSelector:selector inWindows:[[UIApplication sharedApplication] windows]];
 #else
-    return [shelley selectFromViews: [NSArray arrayWithObject: [NSApplication sharedApplication]]];
+    return [self selectViewsWithSelector:selector inWindows:[NSArray arrayWithObject: [NSApplication sharedApplication]]];
 #endif
+}
+
+- (NSArray *) selectViewsWithSelector:(NSString *)selector inWindows:(NSArray *)windows
+{
+    NSLog( @"Using %s to select views with selector: %@ in windows: %@", VERSIONED_NAME, selector, windows );
+
+    Shelley *shelley = [Shelley withSelectorString:selector];
+    return [shelley selectFromViews:windows];
 }
 
 @end
