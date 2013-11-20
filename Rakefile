@@ -7,7 +7,7 @@ end
 PRODUCT_NAME="Shelley"
 PROJECT_PATH="#{PRODUCT_NAME}.xcodeproj"
 SCHEME=PRODUCT_NAME
-TEST_SCHEME="Unit Tests"
+TEST_SCHEME="Shelley"
 
 def build_project_for(arch)
   sdk = discover_latest_sdk_for(arch)
