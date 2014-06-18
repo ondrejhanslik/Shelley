@@ -48,11 +48,7 @@
 }
 
 - (id)initWithClass:(Class)class {
-#if TARGET_OS_IPHONE
     return [self initWithClass:class includeSelf:NO];
-#else
-    return [self initWithClass:class includeSelf:YES];
-#endif
 }
 
 - (id)initWithClass:(Class)class includeSelf:(BOOL)includeSelf {

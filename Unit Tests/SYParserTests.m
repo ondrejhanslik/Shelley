@@ -20,7 +20,7 @@
     
     id<SYFilter> filter = [parser nextFilter];
     STAssertTrue([filter isKindOfClass:[SYClassFilter class]], nil);
-    STAssertEquals([(SYClassFilter *)filter target], [ShelleyTestView class], nil);
+    STAssertEquals([(SYClassFilter *)filter target], [ShelleyTestObject class], nil);
     
     filter = [parser nextFilter];
     STAssertNil( filter, nil );
@@ -54,7 +54,6 @@
     SYSelectorFilter *selectorFilter = (SYSelectorFilter *)filter;
     STAssertEquals([selectorFilter selector], @selector(noArgMethod), nil);
     STAssertEquals([[selectorFilter args] count], (NSUInteger)0, nil );
-
 }
 
 - (void) testSingleArgPredicateSelectorParses{

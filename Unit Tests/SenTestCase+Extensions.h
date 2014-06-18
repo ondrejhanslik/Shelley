@@ -9,11 +9,13 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 #if TARGET_OS_IPHONE
+#define ShelleyTestObject    UIView
 #define ShelleyTestView      UIView
 #define ShelleyTestButton    UIButton
 #define ShelleyTestTableView UITableView
 #define ShelleyTestTableCell UITableViewCell
 #else
+#define ShelleyTestObject    NSObject
 #define ShelleyTestView      NSView
 #define ShelleyTestButton    NSButton
 #define ShelleyTestTableView NSTableView

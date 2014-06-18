@@ -1,5 +1,7 @@
 # Shelley
 
+[![Build Status](https://travis-ci.org/TestingWithFrank/Shelley.png?branch=master)](https://travis-ci.org/TestingWithFrank/Shelley)
+
 Shelley is a view selector engine which can be plugged in to [Frank](http://www.testingwithfrank.com). It is Frank's default selector engine.
 
 Shelley aims to be backwards compatible with the UIScript selector syntax, which is part of UISpec. Details about this UIScript syntax can be found in [UISpec's documentation](http://code.google.com/p/uispec/wiki/Documentation#UIScript).

@@ -7,6 +7,7 @@ end
 PRODUCT_NAME="Shelley"
 PROJECT_PATH="#{PRODUCT_NAME}.xcodeproj"
 SCHEME=PRODUCT_NAME
+TEST_SCHEME="Shelley"
 
 def build_project_for(arch)
   sdk = discover_latest_sdk_for(arch)
@@ -54,4 +55,10 @@ end
 desc "Build a univeral library for both iphone and iphone simulator"
 task :build_lib => [:clean, :prep_build, :build_iphone_lib,:build_simulator_lib,:combine_libraries,:build_osx_lib]
 
-task :default => :build_lib
+task :test do
+  sh %Q|xctool ONLY_ACTIVE_ARCH=NO -project #{PROJECT_PATH} -scheme "#{TEST_SCHEME}" -sdk iphonesimulator test|
+end
+
+task :travis => [:test]
+
+task :default => [:test, :build_lib]
